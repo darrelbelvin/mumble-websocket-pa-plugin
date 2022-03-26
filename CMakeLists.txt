@@ -6,18 +6,18 @@ include(TargetArch)
 
 project(MumblePlugin
 	VERSION "1.0.0"
-	DESCRIPTION "Minimal Mumble plugin"
+	DESCRIPTION "Mumble Websocket Positional Data Plugin"
 	LANGUAGES "C"
 )
 
-set(PLUGIN_NAME "hello_mumble")
+set(PLUGIN_NAME "websocket_pa")
 
-add_library(plugin
+add_library(wspa
 	SHARED
-		plugin.c
+		wspa.c
 )
 
-target_include_directories(plugin
+target_include_directories(wspa
 	PUBLIC "${CMAKE_SOURCE_DIR}/include/"
 )
 
@@ -37,4 +37,8 @@ if (NOT TARGET_ARCH STREQUAL "unknown")
 	set(PLUGIN_NAME "${PLUGIN_NAME}_${TARGET_ARCH}")
 endif()
 
-set_target_properties(plugin PROPERTIES LIBRARY_OUTPUT_NAME "${PLUGIN_NAME}")
+set_target_properties(wspa PROPERTIES LIBRARY_OUTPUT_NAME "${PLUGIN_NAME}")
+
+add_custom_command(TARGET wspa POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:wspa> "C:/Users/darre/AppData/Roaming/Mumble/Plugins"
+)
