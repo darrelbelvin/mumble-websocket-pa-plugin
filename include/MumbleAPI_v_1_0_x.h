@@ -1,4 +1,4 @@
-// Copyright 2021 The Mumble Developers. All rights reserved.
+// Copyright 2021-2022 The Mumble Developers. All rights reserved.
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file at the root of the
 // Mumble source tree or at <https://www.mumble.info/LICENSE>.
@@ -15,11 +15,11 @@
 // API version
 #define MUMBLE_PLUGIN_API_MAJOR_MACRO 1
 #define MUMBLE_PLUGIN_API_MINOR_MACRO 0
-#define MUMBLE_PLUGIN_API_PATCH_MACRO 0
+#define MUMBLE_PLUGIN_API_PATCH_MACRO 3
 
-const int32_t MUMBLE_PLUGIN_API_MAJOR            = MUMBLE_PLUGIN_API_MAJOR_MACRO;
-const int32_t MUMBLE_PLUGIN_API_MINOR            = MUMBLE_PLUGIN_API_MINOR_MACRO;
-const int32_t MUMBLE_PLUGIN_API_PATCH            = MUMBLE_PLUGIN_API_PATCH_MACRO;
+#define MUMBLE_PLUGIN_API_MAJOR MUMBLE_PLUGIN_API_MAJOR_MACRO
+#define MUMBLE_PLUGIN_API_MINOR MUMBLE_PLUGIN_API_MINOR_MACRO
+#define MUMBLE_PLUGIN_API_PATCH MUMBLE_PLUGIN_API_PATCH_MACRO
 const mumble_version_t MUMBLE_PLUGIN_API_VERSION = { MUMBLE_PLUGIN_API_MAJOR, MUMBLE_PLUGIN_API_MINOR,
 													 MUMBLE_PLUGIN_API_PATCH };
 
@@ -526,5 +526,7 @@ struct MumbleAPI_v_1_0_x {
 	/// @returns The error code. If everything went well, STATUS_OK will be returned.
 	mumble_error_t(PLUGIN_CALLING_CONVENTION *playSample)(mumble_plugin_id_t callerID, const char *samplePath);
 };
+
+typedef struct MumbleAPI_v_1_0_x mumble_api_t;
 
 #endif // EXTERNAL_MUMBLE_PLUGIN_API_H_
